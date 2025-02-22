@@ -4,6 +4,7 @@ import LoginPage from "./pages/auth/LoginPage.jsx";
 import SignUpPage from "./pages/auth/SignUpPage.jsx";
 import NotificationsPage from "./pages/NotificationsPage.jsx";
 import NetworkPage from "./pages/NetworkPage.jsx";
+import PostPage from "./pages/PostPage.jsx";
 import { Navigate, Route, Routes } from "react-router-dom";
 import toast, { Toaster } from "react-hot-toast";
 import { useQuery } from "@tanstack/react-query";
@@ -37,6 +38,7 @@ function App() {
         <Route path="/login" element={!authUser ? <LoginPage /> : <Navigate to={"/"} />} />
         <Route path="/notifications" element={authUser ? <NotificationsPage /> : <Navigate to={"/login"} />} />
         <Route path="/network" element={authUser ? <NetworkPage /> : <Navigate to={"/login"} />} />
+        <Route path="/post/:postId" element={authUser ? <PostPage /> : <Navigate to={"/login"} />} />
 	</Routes>
     <Toaster />
         </Layout>
