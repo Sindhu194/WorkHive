@@ -1,10 +1,10 @@
 import { useQuery } from "@tanstack/react-query";
 import { axiosInstance } from "../lib/axios";
-// import Sidebar from "../components/Sidebar.jsx";
+import Sidebar from "../components/Sidebar.jsx";
 // import PostCreation from "../components/PostCreation.jsx";
-// import Post from "../components/Post.jsx";
+ import Post from "../components/Post.jsx";
 import { Users } from "lucide-react";
-// import RecommendedUser from "../components/RecommendedUser.jsx";
+import RecommendedUser from "../components/RecommendedUser.jsx";
 
 const HomePage = () => {
 	const { data: authUser } = useQuery({ queryKey: ["authUser"] });
