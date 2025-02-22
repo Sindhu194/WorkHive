@@ -1,5 +1,5 @@
 import { useQuery } from "@tanstack/react-query";
-import { axiosInstance } from "../lib/axios";
+import { axiosInstance } from "../lib/axios.js";
 import Sidebar from "../components/Sidebar.jsx";
 import PostCreation from "../components/PostCreation.jsx";
 import Post from "../components/Post.jsx";

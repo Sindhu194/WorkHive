@@ -1,6 +1,6 @@
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { useState } from "react";
-import { axiosInstance } from "../lib/axios";
+import { axiosInstance } from "../lib/axios.js";
 import toast from "react-hot-toast";
 import { Link, useParams } from "react-router-dom";
 import { Loader, MessageCircle, Send, Share2, ThumbsUp, Trash2 } from "lucide-react";
