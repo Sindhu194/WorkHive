@@ -30,7 +30,7 @@ const userSchema = new mongoose.Schema(
 		},
 		headline: {
 			type: String,
-			default: "Linkedin User",
+			default: "WorkHive User",
 		},
 		location: {
 			type: String,
