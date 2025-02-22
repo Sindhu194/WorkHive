@@ -1,12 +1,12 @@
 import {  useQueryClient,useMutation,useQuery } from "@tanstack/react-query";
 import { useState } from "react";
-import { axiosInstance } from "../lib/axios";
+import { axiosInstance } from "../lib/axios.js";
 import toast from "react-hot-toast";
 import { Link } from "react-router-dom";
 import { Loader, MessageCircle, Share2, ThumbsUp, Trash2 } from "lucide-react";
 import { formatDistanceToNow } from "date-fns";
 
-import PostAction from "./PostAction";
+import PostAction from "./PostAction.jsx";
 
 const Post = ({ post }) => {
 	//const { postId } = useParams();
@@ -52,7 +52,7 @@ const Post = ({ post }) => {
 		},
 		onSuccess: () => {
 			queryClient.invalidateQueries({ queryKey: ["posts"] });
-			//queryClient.invalidateQueries({ queryKey: ["post", postId] });
+			queryClient.invalidateQueries({ queryKey: ["post", postId] });
 		},
 	});
 
@@ -120,7 +120,7 @@ const Post = ({ post }) => {
 
             <div className='flex justify-between text-info'>
                 <PostAction
-                    icon={<ThumbsUp size={18} className={isLiked ? "text-blue-500  fill-blue-300" : ""} />}
+                    icon={<ThumbsUp size={18} className={isLiked ? "text-orange-500  fill-orange-300" : ""} />}
                     text={`Like (${post.likes.length})`}
                     onClick={handleLikePost}
                 />
@@ -133,8 +133,47 @@ const Post = ({ post }) => {
                 <PostAction icon={<Share2 size={18} />} text='Share' />
             </div>
         </div>
+        {showComments && (
+				<div className='px-4 pb-4'>
+					<div className='mb-4 max-h-60 overflow-y-auto'>
+						{comments.map((comment) => (
+							<div key={comment._id} className='mb-2 bg-base-100 p-2 rounded flex items-start'>
+								<img
+									src={comment.user.profilePicture || "/avatar.png"}
+									alt={comment.user.name}
+									className='w-8 h-8 rounded-full mr-2 flex-shrink-0'
+								/>
+								<div className='flex-grow'>
+									<div className='flex items-center mb-1'>
+										<span className='font-semibold mr-2'>{comment.user.name}</span>
+										<span className='text-xs text-info'>
+											{formatDistanceToNow(new Date(comment.createdAt))}
+										</span>
+									</div>
+									<p>{comment.content}</p>
+								</div>
+							</div>
+						))}
+					</div>
+                    <form onSubmit={handleAddComment} className='flex items-center'>
+						<input
+							type='text'
+							value={newComment}
+							onChange={(e) => setNewComment(e.target.value)}
+							placeholder='Add a comment...'
+							className='flex-grow p-2 rounded-l-full bg-base-100 focus:outline-none focus:ring-2 focus:ring-primary'
+						/>
 
-    
+						<button
+							type='submit'
+							className='bg-primary text-white p-2 rounded-r-full hover:bg-primary-dark transition duration-300'
+							disabled={isAddingComment}
+						>
+							{isAddingComment ? <Loader size={18} className='animate-spin' /> : <Send size={18} />}
+						</button>
+					</form>
+                    </div>
+        )}    
     </div>
     );
 };

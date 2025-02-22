@@ -1,6 +1,6 @@
 import { useQueryClient,useMutation } from "@tanstack/react-query";
 import { useState } from "react";
-import { axiosInstance } from "../lib/axios";
+import { axiosInstance } from "../lib/axios.js";
 import toast from "react-hot-toast";
 import { Image, Loader } from "lucide-react";
 
@@ -100,4 +100,4 @@ const PostCreation = ({ user }) => {
     );
 };
 
-export default PostCreation
+export default PostCreation;

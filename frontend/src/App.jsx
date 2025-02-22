@@ -2,10 +2,11 @@ import Layout from "./components/layout/Layout.jsx";
 import HomePage from "./pages/HomePage.jsx";
 import LoginPage from "./pages/auth/LoginPage.jsx";
 import SignUpPage from "./pages/auth/SignUpPage.jsx";
+import NotificationsPage from "./pages/NotificationsPage.jsx";
 import { Navigate, Route, Routes } from "react-router-dom";
 import toast, { Toaster } from "react-hot-toast";
 import { useQuery } from "@tanstack/react-query";
-import { axiosInstance } from "./lib/axios";
+import { axiosInstance } from "./lib/axios.js";
 function App() {
 
     const{data: authUser,isLoading }=useQuery({
@@ -42,6 +43,6 @@ function App() {
     <Toaster />
         </Layout>
  );
-}
+};
 
 export default App;
