@@ -4,7 +4,8 @@
   "main": "backend/server.js",
   "scripts": {
     "dev": "nodemon backend/server.js",
-    "start": "node -r dotenv/config backend/server.js"
+    "start": "node -r dotenv/config backend/server.js",
+    "build":"npm install && npm install --prefix frontend && npm run build --prefix frontend"
   },
   "keywords": [],
   "author": "",
